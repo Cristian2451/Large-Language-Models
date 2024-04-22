@@ -1,6 +1,6 @@
 import torch
 from transformers import BertTokenizer, BertForQuestionAnswering
-from bert_for_qa.user_interface import ChatBot
+from user_interface import ChatBot
 
 tokenizer = BertTokenizer.from_pretrained("bert-base-cased", do_lower_case=False)
 model = BertForQuestionAnswering.from_pretrained("bert-base-cased")
