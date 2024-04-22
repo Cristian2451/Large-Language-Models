@@ -6,18 +6,19 @@ tokenizer = BertTokenizer.from_pretrained("bert-base-cased", do_lower_case=False
 model = BertForQuestionAnswering.from_pretrained("bert-base-cased")
 print(model.load_state_dict(torch.load("models/trained_model_state_dict.pt", map_location=torch.device('cpu'))))
 context = """
-Boris Johnson is a British politician, author, and former  journalist who has served as Prime Minister of the United 
-Kingdom and Leader of the Conservative Party since 2019. 
-He was Foreign Secretary from 2016 to 2018 and Mayor of London from 2008 to 2016. Johnson was Member of 
-Parliament (MP) for Henley from 2001 to 2008 and has been MP for Uxbridge and South Ruislip since 2015. 
-Ideologically, he identifies as a one-nation conservative.
+Leonardo da Vinci (15 April 1452 – 2 May 1519) was an Italian polymath of the High Renaissance who was active 
+as a painter, draughtsman, engineer, scientist, theorist, sculptor, and architect.
+While his fame initially rested on his achievements as a painter, he has also become known for his notebooks, 
+in which he made drawings and notes on a variety of subjects, including anatomy, astronomy, botany, cartography, 
+painting, and paleontology. Leonardo epitomized the Renaissance humanist ideal, and his collective works comprise 
+a contribution to later generations of artists matched only by that of his younger contemporary Michelangelo.
 """.replace("\n", " ")
 
 bot = ChatBot(context, tokenizer, model, max_len=300)
 questions = [
-    "Who is Boris Johnson?",
-    "From when was Boris Johnson Foreign Secretary?",
-    "Which party does Boris Johnson belong to?",
+    "Who was Leonardo da Vinci?",
+    "When was Leonardo da Vinci born?",
+    "Who contributed to Leonardo da Vinci's work?",
 ]
 
 answers = bot.answer(questions, disable_progress_bar=False)
